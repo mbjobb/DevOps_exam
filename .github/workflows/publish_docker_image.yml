@@ -27,5 +27,5 @@ jobs:
         
       - name: push docker image to dockerhub
         run: |
-          docker push SQS_prompt_as_argument
+          docker push sqs_prompt_as_argument
           
