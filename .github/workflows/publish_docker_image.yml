@@ -21,6 +21,7 @@ jobs:
         
       - name: build docker image
         run: |
+          cd provided_files/java_sqs_client
           docker build . -t sqs_prompt_as_argument
           
         
