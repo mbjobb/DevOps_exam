@@ -10,4 +10,5 @@ FROM eclipse-temurin:17-jre-alpine as final
 WORKDIR /app
 COPY --from=builder /app/target/*.jar /app/application.jar
 Run export SQS_QUEUE_URL="https:dockerfile derp"
+ENV SQS_QUEUE_URL="https:dockerfile derp"
 ENTRYPOINT ["java", "-jar", "/app/application.jar"]
