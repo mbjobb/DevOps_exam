@@ -26,8 +26,6 @@ Resources:
   GenerateImageFunction:
     Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
     Properties:
-      EndpointConfiguration:
-        Type: REGIONAL
       CodeUri: hello_world/
       Handler: app.lambda_handler
       Runtime: python3.8
@@ -39,6 +37,7 @@ Resources:
       Policies:
         - S3CrudPolicy:
             BucketName: !Ref BucketName
+        - AWSLambda_FullAccess:
         - Version: '2012-10-17'
           Statement:
             - Effect: Allow
@@ -51,6 +50,27 @@ Resources:
           Properties:
             Path: /generate
             Method: post
+            
+    LambdaRole:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action:
+              - 'sts:AssumeRole'
+      Policies:
+        - PolicyName: default
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Effect: Allow
+                Action: 'logs:*'
+                Resource: '*'
 
   ApplicationResourceGroup:
     Type: AWS::ResourceGroups::Group
