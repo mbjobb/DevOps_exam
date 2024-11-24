@@ -22,10 +22,10 @@ jobs:
       - name: build docker image
         run: |
           cd provided_files/java_sqs_client
-          docker build . -t sqs_prompt_as_argument
+          docker build . -t mbjobb/sqs_prompt_as_argument
           
         
       - name: push docker image to dockerhub
         run: |
-          docker push sqs_prompt_as_argument
+          docker push mbjobb/sqs_prompt_as_argument
           
