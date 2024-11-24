@@ -24,7 +24,7 @@ public class SQSClient implements CommandLineRunner {
         if (args.length != 1) {
             System.out.println("Please provide image prompt");
             System.exit(-1);
-        }else{String queueUrl = System.getenv("SQS_QUEUE_URL"); System.out.println(args[0]); System.out.println(queueUrl);}
+        }else{String queueUrl = System.getenv("SQS_QUEUE_URL"); System.out.println(args[0]); /*System.out.println(queueUrl);*/}
         System.exit(0);
         String messageBody = args[0];
 
