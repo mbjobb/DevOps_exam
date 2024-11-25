@@ -20,8 +20,7 @@ jobs:
 
       - name: Terraform Init
         id: init
-        run: cd infra
-        run: terraform init
+        run: cd infra && terraform init
 
       - name: Terraform Plan
         id: plan
