@@ -7,7 +7,7 @@ on:
 
 jobs:
   push_to_dockerhub:
-    name: Push Docker image to ECR
+    name: Push Docker image to DockerHub
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
