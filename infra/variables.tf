@@ -10,5 +10,4 @@ variable "output_bucket_name" {
 
 variable "alarm_email" {
     type = string
-    default = "mbrandt.jobb@gmail.com"
 }
