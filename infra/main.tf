@@ -17,6 +17,9 @@ provider "aws" {
   region = "eu-west-1" 
 }
 
+resource "aws_sns_topic" "message_age" {
+    name = "${var.candidate_prefix}-sqs-alarm-topic"
+}
 
 output "lambda_url" {
     value = aws_lambda_function_url.sqs_lambda_url.function_url
