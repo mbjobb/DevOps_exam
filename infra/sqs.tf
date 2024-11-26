@@ -8,3 +8,4 @@ resource "aws_lambda_event_source_mapping" "lambda_event_que" {
     enabled = true
     function_name = aws_lambda_function.sqs_image_generator.function_name
 }
+

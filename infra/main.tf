@@ -17,6 +17,7 @@ provider "aws" {
   region = "eu-west-1" 
 }
 
+
 output "lambda_url" {
     value = aws_lambda_function_url.sqs_lambda_url.function_url
 }

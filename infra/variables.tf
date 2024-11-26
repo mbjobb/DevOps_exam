@@ -7,3 +7,8 @@ variable "output_bucket_name" {
     type = string
     default = "pgr301-couch-explorers"
 }
+
+variable "alarm_email" {
+    type = string
+    default = "mbrandt.jobb@gmail.com"
+}

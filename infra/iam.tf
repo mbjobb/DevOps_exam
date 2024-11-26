@@ -69,6 +69,11 @@ resource "aws_iam_role_policy" "lambda_que_policy" {
                 ],
                 "Effect": "Allow",
                 "Resource": "*"
+            },
+            {
+                Effect   = "Allow"
+                Action   = "sns:Publish"
+                Resource = aws_sns_topic.message_age.arn
             }
         ]   
     })

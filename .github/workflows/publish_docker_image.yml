@@ -9,23 +9,31 @@ jobs:
   push_to_dockerhub:
     name: Push Docker image to DockerHub
     runs-on: ubuntu-latest
+    
     steps:
       - name: Check out the repo
         uses: actions/checkout@v2
-        
-      - name: logi n to dockerhub
+
+      - name: Log in to DockerHub
         uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_ACCESS_KEY }}
         
-      - name: build docker image
+      - name: Generate version tag
+        id: version
+        run: |
+          # Get the latest git tag and use it as the version
+          VERSION=$(git describe --tags --abbrev=0 || echo "v0.0.1")  # Fallback to v0.0.1 if no tags exist
+          echo "VERSION=${VERSION}" >> $GITHUB_ENV
+          echo "Generated version tag: $VERSION"
+        
+      - name: Build docker image
         run: |
           cd provided_files/java_sqs_client
-          docker build . -t mbjobb/sqs_prompt_as_argument
-          
+          docker build . -t mbjobb/sqs_prompt_as_argument:${{ env.VERSION }}
         
-      - name: push docker image to dockerhub
+      - name: Push Docker image to DockerHub
         run: |
-          docker push mbjobb/sqs_prompt_as_argument
-          
+          docker push mbjobb/sqs_prompt_as_argument:${{ env.VERSION }}
+
